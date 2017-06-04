@@ -5,7 +5,6 @@ import requests
 
 class Cups():
 
-
     def __init__(self, url, page, path):
         self._url = url
         self._page = page
@@ -57,17 +56,24 @@ class Cups():
     @staticmethod
     def extract():
         """ 提取数据 """
-        datelst, size_colorlst, commentlst = [], [], []
-        with open("cup_all.csv", "r", encoding="utf-8") as f:
-            fin_csv = csv.reader(f)
-            for row in fin_csv:
-                date, size_color, comment = row
-                # datelst.append((date))
-                # size_colorlst.append((size_color))
-                commentlst.append((comment))
-        with open("comment.txt", "w+", encoding="utf-8") as f:
-            for r in commentlst:
-                f.write(r + "\n")
+        # datelst, size_colorlst, commentlst = [], [], []
+        # with open("cup_all.csv", "r", encoding="utf-8") as f:
+        #     fin_csv = csv.reader(f)
+        #     for row in fin_csv:
+        #         date, size_color, comment = row
+        #         # datelst.append((date))
+        #         # size_colorlst.append((size_color))
+        #         commentlst.append((comment))
+        # with open("comment.txt", "w+", encoding="utf-8") as f:
+        #     for r in commentlst:
+        #         f.write(r + "\n")
+        with open(r"data_/size_color.txt", "r", encoding="utf-8") as fin:
+            rows = fin.readlines()
+            lst = []
+            for row in rows:
+                lst.append((row.split(";")[1]))
+        with open(r"data_/size.txt", "w+", encoding="utf-8") as fout:
+            fout.writelines(lst)
 
 if __name__ == "__main__":
 
