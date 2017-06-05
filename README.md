@@ -1,10 +1,10 @@
-# 关于女性内衣尺码的深入探讨  
+# 关于女性文胸尺码的深入探讨  
 
 > 关爱女性健康，从我做起！  
 
 ## 概况  
 
-心血来潮，想爬取天猫内衣的购买信息记录，来对中国广大女性的胸围情况来次认真地探讨。爬取内容为评论里的信息，包括尺码，颜色以及评价。习惯性打开开发者工具，果不其然，评论信息是动态生成的。所以就要到 network 去抓包，数据是 json 格式的。搞到评论的具体网址后分析下各参数，用 list 迭代岂不美滋滋？第一次迭代爬取 10w 条评论后用 set 去重后只剩下 1000 多条？？？ 经分析，它每隔几页评论就会弹出一个反爬虫连接验证登录，而且靠后一点，如 100 页后的数据显示的总是重复，经优化后一个商品差不多能爬到 4000 条不重复的评论。也可能是我技术还不到家吧，能力不够，努力来凑。我就爬取了不同的约 50 件商品的记录，得到了 20W 条评论信息（样本容量还是有点小，不过取样的范围广一点）。 
+心血来潮，想爬取天猫内衣的购买信息记录，来对中国广大女性的胸围情况来次认真地探讨。爬取内容为评论里的信息，包括尺码，颜色以及评价。习惯性打开开发者工具，果不其然，评论信息是动态生成的。所以就要到 network 去抓包，数据是 json 格式的。搞到评论的具体网址后分析下各参数，用 list 迭代岂不美滋滋？第一次迭代爬取 10w 条评论后用 set 去重后只剩下 1000 多条？？？ 经分析，它每隔几页评论就会弹出一个反爬虫连接验证登录，而且靠后一点，如 100 页后的数据显示的总是重复，经优化后一个商品差不多能爬到 4000 条不重复的评论。也可能是我技术还不到家吧，能力不够，努力来凑。我就爬取了不同的约 50 件商品的记录，得到了 20w 条评论信息（样本容量还是有点小，不过取样的范围广一点）。 
 
 ## 前言  
 
@@ -20,17 +20,17 @@
 
 还不知道怎么测量，看图 
  
-![cup_ins_1]()  
+![cup_ins_1](http://oog4yfyu0.bkt.clouddn.com/cup_ins_1.png)  
 
 如何计算罩杯的大小？  
 罩杯的大小就是上胸围减去下胸围的差。根据步骤一测量的结果，用胸围尺寸 - 下胸围尺寸的差，即确定罩杯号型。对应罩杯参考。  
 
-![cup_ins_2]()  
+![cup_ins_2](http://oog4yfyu0.bkt.clouddn.com/cup_ins_2.png)  
 
 本来以为 A 已经够优秀了，没想到还有 AA 的，比优秀还优秀。加油，摸摸大！
 接下来就是确定具体尺码了，尺码有两种，英式尺码和国际尺码。  
 
-![cup_ins_3]()  
+![cup_ins_3](http://oog4yfyu0.bkt.clouddn.com/cup_ins_3.png)  
 
 有了这些基本概念后，我们再来看看这具体的 20w 条数据  
 
@@ -38,7 +38,7 @@
 
 对颜色进行分词统计词频，清理数据后共有 136 个，对 top20 生成条形图  
 
-![cup_color_bar]()  
+![cup_color_bar](http://oog4yfyu0.bkt.clouddn.com/cup_color_bar.png)  
 
 **肤色 黑色 粉色** 在第一梯队，遥遥领先  
 **灰色 白色 卡其色 紫色 蓝色 浅紫色 红色 贵族黑 浅蓝** 处于第二梯队，贵族黑和黑色有什么差别？黑得若隐若现？  
@@ -112,7 +112,7 @@
 
 最后来个词云  
 
-![cup_wordcloud]()  
+![cup_wordcloud](http://oog4yfyu0.bkt.clouddn.com/cup_wordcloud.jpg)  
 
 ## 尺码  
 
@@ -120,74 +120,66 @@
 
 先来看看总体的胸围情况  
 
-![cup_down_all_line]()  
+![cup_down_all_line](http://oog4yfyu0.bkt.clouddn.com/cup_down_all_line.png)  
 
 总体上呈现先升后降的趋势，以 75cm 为分界点开始下滑，总体范围还是在 70cm - 85cm， 95cm 的基本上已经很少了，一是可能爬取的内衣商品里面有的没卖 95cm 的，二是这胸围的本来就少...   
 
-下胸围总体比例  
+下胸围对应的总体比例  
 
-![cup_down_all_pie]()  
+![cup_down_all_pie](http://oog4yfyu0.bkt.clouddn.com/cup_down_all_pie.png)  
 
 再来看看总体的罩杯情况  
 
-![cup_size_all_line]()  
+![cup_size_all_line](http://oog4yfyu0.bkt.clouddn.com/cup_size_all_line.png)  
 
-也是先升后降的趋势，这个是以 B 罩杯为分界点开始下滑，但是这个滑得明显比较陡峭一点，E罩杯 只有可怜的 155。哎！现实太骨感了，还是理想丰满一点。  
+也是先升后降的趋势，这个是以 B 罩杯为分界点开始下滑，但是这个滑得明显比较陡峭一点，E 罩杯 只有可怜的 155。哎！现实太骨感了，还是理想丰满一点。  
 
-罩杯总体比例  
+罩杯对应的总体比例  
 
-![cup_size_all_pie]()  
+![cup_size_all_pie](http://oog4yfyu0.bkt.clouddn.com/cup_size_all_pie.png)  
 
 看完总体看具体  
 
 以罩杯为横坐标，绘制出各胸围对应的罩杯情况  
 
-![cup_size_line]()  
+![cup_size_line](http://oog4yfyu0.bkt.clouddn.com/cup_size_line.png)  
 
 基本上都是先升后降，75cm 80cm 85cm 的是以 B 罩杯为分界点变换趋势，只有 70cm 的是一路向下滑。90cm 和 95cm 由于量不足，在这个图里基本上已经贴着 X 轴了，把这两个单独拉出来看看  
 
-![cup_90_95]()  
+![cup_90_95](http://oog4yfyu0.bkt.clouddn.com/cup_90_95.png)  
 
 这下就明显很多了，这两个是以 C 罩杯为分界点变换趋势的，因为毕竟胸围大，罩杯大的几率会大一点。值得注意的是，95cm 是没有 A 罩杯和 E 罩杯的。95cm 的胸围 A 的罩杯，这太可怜了吧..., 95cm 的胸围 E 的罩杯，那也是强得不敢想象。  
 
 以胸围为横坐标，绘制出各罩杯对应的胸围情况  
 
-![size_cup_line]()  
+![size_cup_line](http://oog4yfyu0.bkt.clouddn.com/size_cup_line.png)  
 
 这个的趋势就比较有趣了，A 罩杯和 B 罩杯以 75cm 为分界点，开始下降，A 罩杯降得比 B 罩杯稍微平缓一点，C 罩杯的波动就平缓很多，可能也是总体的量偏少，加上图表比例的关系。至于 D 罩杯和 E 罩杯，还是贴地了，我也把它俩单独拉出来。  
 
-![cup_DE]()
+![cup_DE](http://oog4yfyu0.bkt.clouddn.com/cup_DE.png)
 
 可以看到 D 罩杯是呈现梯状的，E 罩杯由于量实在少，基本上毫无波动。  
 
-**再详细看看数据集中的范围吧**  
+### 再详细看看数据集中的范围吧  
 
 胸围范围为 [ 70cm - 85cm ]，罩杯范围为 [ A - C ]  
 其对应的比例分别为 
 
-70cm 的情况  
+70cm 的情况，**A > B > C**  
 
-![cup_70]()  
+![cup_70](http://oog4yfyu0.bkt.clouddn.com/cup_70.png)  
 
-A > B > C
+75cm 的情况，**B > A > C**  
 
-75cm 的情况  
+![cup_75](http://oog4yfyu0.bkt.clouddn.com/cup_75.png)   
 
-![cup_75]()  
+80cm 的情况，**B > A > C**  
 
-B > A > C  
+![cup_80](http://oog4yfyu0.bkt.clouddn.com/cup_80.png)  
 
-80cm 的情况  
+85cm 的情况，**B > C > A**   
 
-![cup_80]()  
-
-B > A > C
-
-85cm 的情况  
-
-![cup_85]()  
-
-B > C > A  
+![cup_85](http://oog4yfyu0.bkt.clouddn.com/cup_85.png)   
 
 70cm 的小胸围罩杯比例 A > B > C，小胸围的本身应该就是偏瘦，瘦的话罩杯也是偏小。 75cm 和 80cm 的 B 罩杯的比例都要稍大于 A 罩杯的。85cm 的 C 罩杯已经反超于 A 罩杯了，毕竟胸围大，罩杯也不会小到哪里去  
 
@@ -196,7 +188,7 @@ B > C > A
 一样的套路，分词然后统计词频，进行数据的清理。其中有 42321 条评论用户是没有填写评论的，这个不进行处理。  
 由于评价没有统一规范，这个统计出来的词就多了去了。由 top20 生成条形图  
 
-![cup_comment_bar]()  
+![cup_comment_bar](http://oog4yfyu0.bkt.clouddn.com/cup_comment_bar.png)  
 
 **舒服 不错 喜欢 满意 可以 好评 合适** 这些都是不错的评价，**聚拢** ？显得大一点吗？  
 
@@ -280,22 +272,22 @@ B > C > A
 货比三家，上网买东西图的就是一个方便和便宜。  
 其他的就不再详细分析了，还是老规矩，上个评价的词云。  
 
-![comment_wordcloud]()  
+![comment_woldcloud](http://oog4yfyu0.bkt.clouddn.com/comment_woldcloud.jpg)  
 
 ## 最后
 
 看我用散点图画出一个内衣  
 
-![cup_red]()  
+![cup_red](http://oog4yfyu0.bkt.clouddn.com/cup_red.png)  
 
 什么？不喜欢这火辣的红色，那来个性感的黑色。  
 
-![cup_black]()  
+![cup_black](http://oog4yfyu0.bkt.clouddn.com/cup_black.png)  
 
 用散点图表白也不是说不行，诺！  
 
-![cup_love]()  
+![cup_love](http://oog4yfyu0.bkt.clouddn.com/cup_love.png)  
 
 最后一张图引用我心目中永远的大神 Linux 的一句话  
 
-![talk_is_cheep]()
+![talk_is_cheep](http://oog4yfyu0.bkt.clouddn.com/talk_is_cheep.png)
