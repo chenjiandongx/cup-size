@@ -290,4 +290,4 @@
 
 最后一张图引用我心目中永远的大神 Linux 的一句话  
 
-![talk_is_cheep](https://github.com/chenjiandongx/cup-size/blob/master/images/talk_is_cheep.png)
+![talk_is_cheap](https://github.com/chenjiandongx/cup-size/blob/master/images/talk_is_cheep.png)
