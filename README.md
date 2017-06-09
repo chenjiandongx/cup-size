@@ -288,6 +288,6 @@
 
 ![cup_love](https://github.com/chenjiandongx/cup-size/blob/master/images/cup_love.png)  
 
-最后一张图引用我心目中永远的大神 Linux 的一句话  
+最后一张图引用我心目中永远的大神 Linus 的一句话  
 
 ![talk_is_cheap](https://github.com/chenjiandongx/cup-size/blob/master/images/talk_is_cheap.png)
