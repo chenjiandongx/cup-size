@@ -1,7 +1,13 @@
+#!/usr/bin/python
+#_*_coding:utf-8 _*_
 import csv
 import json
+from codecs import open
 from pprint import pprint
 import requests
+import sys
+
+
 
 class Cups():
 
@@ -76,10 +82,11 @@ class Cups():
             fout.writelines(lst)
 
 if __name__ == "__main__":
-
+    reload(sys)
+    sys.setdefaultencoding( "utf-8" )
     url = "https://rate.tmall.com/list_detail_rate.htm?itemId=37457670144&spuId=249827344&" \
           "sellerId=470355944&order={}&currentPage={}&append=0&content={}"
     cups = Cups(url, 101, "cups.csv")
-    # cups.run()
-    # cups.clear()
+    cups.run()
+    cups.clear()
     cups.extract()
