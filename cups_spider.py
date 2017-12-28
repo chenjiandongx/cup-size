@@ -62,23 +62,24 @@ class Cups():
     @staticmethod
     def extract():
         """ 提取数据 """
-        # datelst, size_colorlst, commentlst = [], [], []
-        # with open("cup_all.csv", "r", encoding="utf-8") as f:
-        #     fin_csv = csv.reader(f)
-        #     for row in fin_csv:
-        #         date, size_color, comment = row
-        #         # datelst.append((date))
-        #         # size_colorlst.append((size_color))
-        #         commentlst.append((comment))
-        # with open("comment.txt", "w+", encoding="utf-8") as f:
-        #     for r in commentlst:
-        #         f.write(r + "\n")
-        with open(r"data_/size_color.txt", "r", encoding="utf-8") as fin:
+        datelst, size_colorlst, commentlst = [], [], []
+        with open("cup_all.csv", "r", encoding="utf-8") as f:
+            fin_csv = csv.reader(f)
+            for row in fin_csv:
+                date, size_color, comment = row
+                datelst.append((date))
+                size_colorlst.append((size_color))
+                commentlst.append((comment))
+	print(size_colorlst)
+        with open("comment.txt", "w+", encoding="utf-8") as f:
+            for r in commentlst:
+                f.write(r + "\n")
+        with open(r"size_color.txt", "r", encoding="utf-8") as fin:
             rows = fin.readlines()
             lst = []
             for row in rows:
                 lst.append((row.split(";")[1]))
-        with open(r"data_/size.txt", "w+", encoding="utf-8") as fout:
+        with open(r"size.txt", "w+", encoding="utf-8") as fout:
             fout.writelines(lst)
 
 if __name__ == "__main__":
@@ -87,6 +88,6 @@ if __name__ == "__main__":
     url = "https://rate.tmall.com/list_detail_rate.htm?itemId=37457670144&spuId=249827344&" \
           "sellerId=470355944&order={}&currentPage={}&append=0&content={}"
     cups = Cups(url, 101, "cups.csv")
-    cups.run()
-    cups.clear()
+    #cups.run()
+    #cups.clear()
     cups.extract()
