@@ -50,6 +50,8 @@ class Cups():
         with open(self._path, "r") as f:
             fin_csv = csv.reader(f)
             for row in fin_csv:
+                if len(row) == 0:
+                    continue
                 s.add(tuple(row))
         with open("data/cup_all.csv", "w+") as f:
             fout_csv = csv.writer(f)
@@ -70,7 +72,7 @@ class Cups():
                 datelst.append(row[0])
                 size_colorlst.append(row[1])
                 commentlst.append(row[2])
-            # print('去除重复后共有%d条数据' % i)
+                # print('去除重复后共有%d条数据' % i)
 
         with open("data/comment.txt", "w+", encoding="utf-8") as f:
             for r in commentlst:
