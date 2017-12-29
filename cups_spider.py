@@ -1,10 +1,13 @@
+#!/usr/bin/python
+# _*_coding:utf-8 _*_
 import csv
 import json
+from codecs import open
 from pprint import pprint
 import requests
 
-class Cups():
 
+class Cups():
     def __init__(self, url, page, path):
         self._url = url
         self._page = page
@@ -37,18 +40,20 @@ class Cups():
 
     def save(self):
         """ 保存数据到本地 """
-        with open(self._path, "w+", encoding="utf-8") as f:
+        with open(self._path, "w+") as f:
             f_csv = csv.writer(f)
             f_csv.writerows(self._result)
 
     def clear(self):
         """ 数据去重 """
         s = set()
-        with open(self._path, "r", encoding="utf-8") as f:
+        with open(self._path, "r") as f:
             fin_csv = csv.reader(f)
             for row in fin_csv:
+                if len(row) == 0:
+                    continue
                 s.add(tuple(row))
-        with open("cup_all.csv", "w+", encoding="utf-8") as f:
+        with open("data/cup_all.csv", "w+") as f:
             fout_csv = csv.writer(f)
             fout_csv.writerows(s)
         print(len(s))
@@ -56,30 +61,45 @@ class Cups():
     @staticmethod
     def extract():
         """ 提取数据 """
-        # datelst, size_colorlst, commentlst = [], [], []
-        # with open("cup_all.csv", "r", encoding="utf-8") as f:
-        #     fin_csv = csv.reader(f)
-        #     for row in fin_csv:
-        #         date, size_color, comment = row
-        #         # datelst.append((date))
-        #         # size_colorlst.append((size_color))
-        #         commentlst.append((comment))
-        # with open("comment.txt", "w+", encoding="utf-8") as f:
-        #     for r in commentlst:
-        #         f.write(r + "\n")
-        with open(r"data_/size_color.txt", "r", encoding="utf-8") as fin:
+        datelst, size_colorlst, commentlst = [], [], []
+        with open("data/cup_all.csv", "r") as f:
+            fin_csv = csv.reader(f)
+            i = 0
+            for row in fin_csv:
+                if len(row) == 0:
+                    continue
+                i += 1
+                datelst.append(row[0])
+                size_colorlst.append(row[1])
+                commentlst.append(row[2])
+                # print('去除重复后共有%d条数据' % i)
+
+        with open("data/comment.txt", "w+", encoding="utf-8") as f:
+            for r in commentlst:
+                f.write(r + "\r")
+
+        with open("data/size_color.txt", "w+", encoding="utf-8") as fin:
+            for r in size_colorlst:
+                # print(r)
+                fin.write(r + "\r")
+        with open("data/size_color.txt", "r", encoding="utf-8") as fin:
             rows = fin.readlines()
-            lst = []
+            size_lst = []
+            corlor_lst = []
             for row in rows:
-                lst.append((row.split(";")[1]))
-        with open(r"data_/size.txt", "w+", encoding="utf-8") as fout:
-            fout.writelines(lst)
+                corlor_lst.append((row.split(";")[0]))
+                size_lst.append((row.split(";")[1]))
+            with open("data/size.txt", "w+", encoding="utf-8") as f_size:
+                f_size.writelines(size_lst)
+            with open("data/corlor.txt", "w+", encoding="utf-8") as f_corlor:
+                for corlor in corlor_lst:
+                    f_corlor.writelines(corlor + '\r')
+
 
 if __name__ == "__main__":
-
     url = "https://rate.tmall.com/list_detail_rate.htm?itemId=37457670144&spuId=249827344&" \
           "sellerId=470355944&order={}&currentPage={}&append=0&content={}"
-    cups = Cups(url, 101, "cups.csv")
-    # cups.run()
-    # cups.clear()
+    cups = Cups(url, 101, "data\cups.csv")
+    cups.run()
+    cups.clear()
     cups.extract()
